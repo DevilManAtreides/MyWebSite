@@ -1,0 +1,593 @@
+:root {
+  --primary-color: #00ff00;
+  --bg-color: black;
+  --border-radius: 8px;
+  --spacing: 3px;
+  --border-style: 3px solid var(--primary-color);
+  --hover-color: #00cc00;
+}
+
+body {
+  display: flex; /* Enable Flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  min-height: 100vh;
+  font-family: "VT323", serif;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/* Console Styling */
+.console {
+  
+  
+  font-family: "VT323", serif;
+  text-align: left;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+}
+
+#typing-text {
+  align-content: center;
+  font-size: 1.2rem;
+  white-space: pre-wrap; /* Preserve formatting and line breaks */
+  font-family: "VT323", serif;
+}
+
+/* IP Address and Date/Time Styling */
+.ip-address,
+#date-time {
+  color: #00bfff; /* Bright blue color */
+}
+
+/* Continue Prompt */
+#continue-prompt {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+/* Blinking Cursor */
+.cursor {
+  font-size: 1.2rem;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Hidden Class */
+.hidden {
+  display: none;
+}
+
+/* Matrix Rain Animation */
+#matrix.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Portfolio Container */
+.portfolio {
+  position: fixed;
+  width: 100%;
+  min-height: 100%;
+  border: 5px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing);
+}
+
+/* Top Status Bar */
+.top-status-bar {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  top: var(--spacing);
+  left: var(--spacing);
+  right: var(--spacing);
+  height: 40px;
+  background-color: var(--bg-color);
+  padding: var(--spacing);
+  font-size: 1.2rem;
+  border: var(--border-style);
+  border-radius: var(--border-radius);
+  z-index: 100;
+}
+
+#welcome-message {
+  float: left;
+}
+
+#date-time {
+  float: right;
+}
+
+/* Navigation Bar */
+.navbar {
+  position: fixed;
+  top: 60px;
+  left: var(--spacing);
+  bottom: var(--spacing);
+  width: 120px;
+  background-color: var(--bg-color);
+  border: var(--border-style);
+  border-radius: var(--border-radius);
+  padding: var(--spacing);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-item {
+  padding: 10px;
+  cursor: pointer;
+ 
+  border-radius: var(--border-radius);
+  text-align: center;
+  transition: all 0.1s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  
+  border-radius: 5%;
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+}
+
+.nav-item.active {
+  
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Content Section */
+.content-section {
+  position: fixed;
+  top: 60px;
+  left: 140px;
+  right: var(--spacing);
+  bottom: var(--spacing);
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  padding: var(--spacing);
+  border: var(--border-style);
+  border-radius: var(--border-radius);
+  overflow-y: auto;
+  z-index: 80;
+}
+
+.content {
+  display: none;
+  padding: 20px;
+}
+
+.content.active {
+  display: block;
+}
+
+
+
+.content {
+  display: none;
+}
+
+.content.active {
+  display: block;
+}
+
+.project-item  {
+  padding: 10px;
+  padding-right:15px;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  text-align: left;
+  transition: all 0.1s ease;
+  width: 80px;
+  border: 1px solid #00ff00;
+  margin-bottom: 5px;
+  color: #00ff00 
+}
+
+.project-item:hover,
+.project-item.active {
+  display: block;
+  width: 100px;
+  height:100%;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+.project-item.active {
+  
+  box-shadow: 0 0 10px var(--primary-color);
+}
+.project-item a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #00ff00 !important; /* Force green */
+  text-decoration: none; /* Remove underline */
+  
+}
+
+.project-item a:visited {
+  color: #00ff00 !important; /* Force green even after clicking */
+}
+
+.project-item a:hover {
+  
+  color: var(--bg-color) !important; /* Change on hover */
+}
+
+.project-item.active a {
+  color: var(--bg-color) !important; /* Ensure proper contrast */
+}
+
+  
+.alert-box {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #000; /* Dark background */
+  color: #00ff00; /* Terminal green */
+  border: 2px solid #00ff00;
+  padding: 20px;
+  text-align: center;
+  font-family: 'VT323', monospace;
+  z-index: 1000;
+}
+
+.alert-box button {
+  background: #000;
+  color: #00ff00;
+  border: 1px solid #00ff00;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: 'VT323', monospace;
+}
+
+.alert-box button:hover {
+  background: #00cc00;
+  color: #000;
+}
+
+.steg-container {
+  
+  position: relative;
+  align-items: center;
+  background-color: #000; /* Dark background for contrast */
+  padding: 20px;
+  border-radius: 10px;
+/*  box-shadow: 0 0 10px var(--primary-color);*/
+  max-width: 300px;
+  border: 2px solid #00ff00;
+  height: 412px;
+
+}
+
+#line{
+  width:100%;
+  display: flex;
+  position:relative;
+  border-bottom:2px solid #00ff00;
+}
+#enc-heading{
+  
+  font-size: 30px;
+  margin-top: -15px;
+  margin-bottom: 15px;
+}
+#dcd-heading{
+  
+  font-size: 30px;
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+#messageInput {
+  width: 150px;
+  height: 30px;
+  background: black;
+  color: #00ff00; /* Terminal green */
+  font-family: 'VT323', monospace; /* Retro terminal font */
+  font-size: 16px;
+  border: transparent;
+  padding: 10px;
+  resize: none; /* Prevent resizing */
+  outline: none;
+  caret-color: #00ff00; /* Green cursor */
+}
+
+#messageLimit{
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.steg-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.steg-actions input{
+  width: 50px;
+  padding: 10px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  background: #222;
+  color: #00ff00;
+  font-family: 'VT323', monospace;
+} 
+
+#passwordmessage{
+  padding-top:0%;
+  margin-top: -6px;
+}
+
+  #encodeBtn {
+  width: 80px;
+  padding: 10px;
+  padding-top:10px ;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  background: #000000;
+  color: #00ff00;
+  font-family: 'VT323', monospace;
+}
+
+#downloadBtn{
+  width: 80px;
+  padding: 4px;
+  margin-left: 100px;
+  margin-top: -45px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  background: #000000;
+  color: #00ff00;
+  font-family: 'VT323', monospace;}
+  
+#decodeBtn{
+    width: 80px;
+
+  padding: 10px;
+
+  padding-top:10px ;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  background: #000000;
+  color: #00ff00;
+  font-family: 'VT323', monospace;
+}
+  
+  
+
+button {
+  cursor: pointer;
+  background: var(--primary-color);
+  color: var(--bg-color);
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background: #00cc00;
+  box-shadow: 0 0 5px #00cc00;
+}
+
+/* Logs */
+#logContainer {
+  position: relative;
+  margin-top: 20px;
+  left: 350px;
+  padding: 10px;
+  background: #000;
+  border-radius: 5px;
+  width: 320px;
+  max-height: 150px;
+  overflow-y: auto;
+  top: -560px;
+}
+
+#logContainer h3 {
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+#logList {
+  font-size: 16px;
+  color: #00ff00;
+  list-style-type: none;
+  padding: 0;
+}
+
+#logList li {
+  margin: 2px 0;
+}
+
+.log-error {
+  color: red;
+}
+
+
+#decryptedMessageContainer{
+  margin-top: 20px;
+  left: 350px;
+  padding: 10px;
+  position: relative;
+  top: -270px;
+
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-family: 'VT323', monospace;
+}
+
+.custom-file-upload:hover {
+  background-color: #00cc00;
+  box-shadow: 0 0 5px #00cc00;
+}
+
+#fileName {
+  display: block;
+  margin-bottom:10px;
+  color: #00ff00;
+  font-size: 14px;
+}
+
+#charCounter {
+  font-size: 12px;
+  color: #00ff00;
+  margin-left: 150px;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  background: transparent; /* Fully transparent when not hovered */
+}
+
+/* Scrollbar Track */
+::-webkit-scrollbar-track {
+  background: transparent; /* No visible track */
+  
+}
+
+/* Scrollbar Handle */
+::-webkit-scrollbar-thumb {
+  background: #00ff00; /* Terminal green */
+  border-radius: 0px;
+  display: none; /* Hidden by default */
+  transition: opacity 0.3s;
+}
+
+/* Show scrollbar when hovered */
+:hover::-webkit-scrollbar-thumb {
+  display:block; /* Becomes visible on hover */
+  
+}
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    width: 80px;
+  }
+
+  .content-section {
+    left: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    position: fixed;
+    bottom: var(--spacing);
+    left: var(--spacing);
+    right: var(--spacing);
+    top: auto;
+    width: 95.2%;
+    height: 60px;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .content-section {
+    left: var(--spacing);
+    bottom: 80px;
+  }
+
+  .steg-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000; /* Dark background for contrast */
+    padding: 20px;
+    border-radius: 10px;
+  /*  box-shadow: 0 0 10px var(--primary-color);*/
+    max-width: 500px;
+    margin: auto;
+    border: 2px solid #00ff00;
+  }
+  
+  
+ #enc-heading{
+   margin-right: 210px;
+  font-size: 30px;
+  margin-top: -15px;
+  margin-bottom: 15px;
+}
+  .project-item  {
+
+  padding: 10px;
+
+  padding-right:15px;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  text-align: left;
+  transition: all 0.1s ease;
+  width: 80px;
+  border: 1px solid #00ff00;
+  margin-bottom: 5px;
+  color: #00ff00 
+}
+
+  .nav-item {
+    flex: 10;
+    align-content: center;   
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding:15px;
+    border: 1px solid var(--primary-color);
+}
+
+#logContainer {
+  margin-top: 20px;
+  padding: 10px;
+  background: #222;
+  border-radius: 5px;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+#logContainer h3 {
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+#logList {
+  font-size: 14px;
+  color: #00ff00;
+  list-style-type: none;
+  padding: 0;
+}
+
+#logList li {
+  margin: 2px 0;
+}
+
+
+#dcd-heading{
+  margin-right: 210px;
+  font-size: 30px;
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+}
