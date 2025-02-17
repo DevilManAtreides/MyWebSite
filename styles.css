@@ -486,16 +486,6 @@ button:hover {
 @media (max-width: 768px) {
 
   .navbar {
-    width: 80px;
-  }
-
-  .content-section {
-    left: 100px;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
     position: fixed;
     bottom: var(--spacing);
     left: var(--spacing);
@@ -514,80 +504,50 @@ button:hover {
   }
 
   .steg-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #000; /* Dark background for contrast */
-    padding: 20px;
-    border-radius: 10px;
-  /*  box-shadow: 0 0 10px var(--primary-color);*/
-    max-width: 500px;
-    margin: auto;
-    border: 2px solid #00ff00;
+    max-width: 100%; 
+    height: auto; 
+    margin: 0 10px; 
+    padding: 15px; 
   }
   
+
+  #enc-heading, #dcd-heading {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 24px; /* Slightly smaller font on mobile */
+  }
   
- #enc-heading{
-   margin-right: 210px;
-  font-size: 30px;
-  margin-top: -15px;
-  margin-bottom: 15px;
-}
-  .project-item  {
 
-  padding: 10px;
+  #messageInput {
+    width: 90%;
+    max-width: 280px; /* Prevent it from getting too wide */
+  }
+  
+  #downloadBtn {
+    margin: 10px 0 0 0; 
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  #encodeBtn, #decodeBtn {
+    width: 100%;
+    max-width: 280px;
+  }
+  
 
-  padding-right:15px;
-  cursor: pointer;
-  border-radius: var(--border-radius);
-  text-align: left;
-  transition: all 0.1s ease;
-  width: 80px;
-  border: 1px solid #00ff00;
-  margin-bottom: 5px;
-  color: #00ff00 
-}
-
-  .nav-item {
-    flex: 10;
-    align-content: center;   
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding:15px;
-    border: 1px solid var(--primary-color);
-}
-
-#logContainer {
-  margin-top: 20px;
-  padding: 10px;
-  background: #222;
-  border-radius: 5px;
-  width: 100%;
-  max-height: 150px;
-  overflow-y: auto;
-}
-
-#logContainer h3 {
-  color: var(--primary-color);
-  margin-bottom: 5px;
-}
-
-#logList {
-  font-size: 14px;
-  color: #00ff00;
-  list-style-type: none;
-  padding: 0;
-}
-
-#logList li {
-  margin: 2px 0;
-}
-
-
-#dcd-heading{
-  margin-right: 210px;
-  font-size: 30px;
-  margin-top: 0px;
-  margin-bottom: 15px;
+  #logContainer {
+    position: static; 
+    left: auto;
+    top: auto;
+    width: 80%;
+    margin: 20px 0;
+  }
+  
+  #decryptedMessageContainer {
+    position: static;
+    left: auto;
+    top: auto;
+    margin: 20px 0;
+  }
 }
 }
