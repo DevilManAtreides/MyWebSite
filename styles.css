@@ -486,6 +486,17 @@ button:hover {
 @media (max-width: 768px) {
 
   .navbar {
+    width: 80px;
+  }
+
+  .content-section {
+    left: 100px;
+  }
+}
+
+@media (max-width: 480px){
+
+  .navbar {
     position: fixed;
     bottom: var(--spacing);
     left: var(--spacing);
@@ -504,27 +515,28 @@ button:hover {
   }
 
   .steg-container {
-    max-width: 100%; 
-    height: auto; 
-    margin: 0 10px; 
-    padding: 15px; 
+    max-width: 100%; /* Full width on mobile */
+    height: auto; /* Allow height to adjust based on content */
+    margin: 0 10px; /* Add some margin on the sides */
+    padding: 15px; /* Slightly reduced padding */
   }
   
-
+  /* Adjust headings for mobile */
   #enc-heading, #dcd-heading {
     text-align: center;
     margin: 10px 0;
     font-size: 24px; /* Slightly smaller font on mobile */
   }
   
-
+  /* Adjust input width for mobile */
   #messageInput {
     width: 90%;
     max-width: 280px; /* Prevent it from getting too wide */
   }
   
+  /* Adjust button layout for mobile */
   #downloadBtn {
-    margin: 10px 0 0 0; 
+    margin: 10px 0 0 0; /* Reset margin and stack vertically */
     width: 100%;
     max-width: 280px;
   }
@@ -534,9 +546,9 @@ button:hover {
     max-width: 280px;
   }
   
-
+  /* Adjust log container for mobile */
   #logContainer {
-    position: static; 
+    position: static; /* Remove absolute positioning */
     left: auto;
     top: auto;
     width: 80%;
