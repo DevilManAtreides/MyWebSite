@@ -267,7 +267,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
    type() // Start the typing animation
-})
+}
+)
 
 // Dynamic Date & Time
 function updateDateTime() {
