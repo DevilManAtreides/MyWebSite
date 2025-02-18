@@ -313,7 +313,7 @@ async function deriveKey(password) {
       "raw", encoder.encode(password), { name: "PBKDF2" }, false, ["deriveKey"]
   );
   return window.crypto.subtle.deriveKey(
-      { name: "PBKDF2", salt: encoder.encode("stego_salt"), iterations: 100000, hash: "SHA-256" },
+      { name: "PBKDF2", salt: encoder.encode("stego_salt"), iterations: 600000, hash: "SHA-256" },
       keyMaterial,
       { name: "AES-GCM", length: 256 },
       true,
