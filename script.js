@@ -150,47 +150,108 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Custom Matrix rain animation
+   const styles = `
+  #matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    z-index: -1;
+    transition: opacity 0.8s ease-out;
+  }
+  
+  #matrix.fade-out {
+    opacity: 0;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  `;
+  
+  // Create and append style element
+  const styleSheet = document.createElement("style");
+  styleSheet.textContent = styles;
+  document.head.appendChild(styleSheet);
+  
   function startMatrixRain() {
-    const canvas = document.getElementById("matrix")
-    const ctx = canvas.getContext("2d")
-
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()けげこごさざしじすずせぜそぞただ"
-    const columns = Math.floor(canvas.width / 20)
-    const drops = Array(columns).fill(0)
-
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+    let isMatrixAnimationActive = true;
+    
+    // Function to handle resize
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    
+    // Initial resize
+    resizeCanvas();
+    
+    // Add resize listener
+    window.addEventListener('resize', resizeCanvas);
+    
+    const characters = 
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()けげこごさざしじすずせぜそぞただ";
+    const fontSize = 18;
+    const columnWidth = 20;
+    
+    // Calculate columns based on screen width
+    const columns = Math.floor(window.innerWidth / columnWidth);
+    let drops = Array(columns).fill(0);
+    
     function draw() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)"
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      ctx.fillStyle = "#00FF00"
-      ctx.font = "18px 'VT323', monospace"
-
+      // Semi-transparent black for fade effect
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Set text properties
+      ctx.fillStyle = "#00FF00";
+      ctx.font = `${fontSize}px 'VT323', monospace`;
+      
+      // Draw characters
       for (let i = 0; i < drops.length; i++) {
-        const text = characters[Math.floor(Math.random() * characters.length)]
-        ctx.fillText(text, i * 20, drops[i] * 20)
-
-        if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0
+        const text = characters[Math.floor(Math.random() * characters.length)];
+        const x = i * columnWidth;
+        const y = drops[i] * columnWidth;
+        
+        ctx.fillText(text, x, y);
+        
+        // Reset drop when it reaches bottom
+        if (y > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
         }
-        drops[i]++
+        drops[i]++;
       }
     }
-
-    const matrixInterval = setInterval(draw, 50)
-
+    
+    // Start the interval-based animation
+    const matrixInterval = setInterval(draw, 50);
+    
+    // Set up the animation cleanup after 5 seconds
     setTimeout(() => {
-      canvas.classList.add("fade-out")
+      canvas.classList.add("fade-out");
       setTimeout(() => {
-        clearInterval(matrixInterval)
-        canvas.remove()
-        document.getElementById("portfolio").style.display = "grid";
+        clearInterval(matrixInterval);
+        canvas.remove();
+        const portfolio = document.getElementById("portfolio");
+        if (portfolio) {
+          portfolio.style.display = "grid";
+        }
         isMatrixAnimationActive = false;
-      }, 800)
-    }, 5000)
+        window.removeEventListener('resize', resizeCanvas);
+      }, 800);
+    }, 5000);
+    
+    // Return cleanup function
+    return () => {
+      clearInterval(matrixInterval);
+      window.removeEventListener('resize', resizeCanvas);
+      isMatrixAnimationActive = false;
+    };
   }
 
 
