@@ -149,97 +149,50 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Custom Matrix rain animation
   function startMatrixRain() {
-    const canvas = document.getElementById("matrix");
-    const ctx = canvas.getContext("2d");
-    let isMatrixAnimationActive = true;
-    
-    // Function to handle resize
-    function resizeCanvas() {
-      // Get device pixel ratio
-      const dpr = window.devicePixelRatio || 1;
-      
-      // Get viewport size
-      const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
-      
-      // Set canvas size in pixels
-      canvas.width = viewportWidth * dpr;
-      canvas.height = viewportHeight * dpr;
-      
-      // Scale the canvas context
-      ctx.scale(dpr, dpr);
-      
-      // Set canvas CSS size
-      canvas.style.width = `${viewportWidth}px`;
-      canvas.style.height = `${viewportHeight}px`;
-    }
-    
-    // Initial resize
-    resizeCanvas();
-    
-    // Add resize listener
-    window.addEventListener('resize', resizeCanvas);
-    
-    const characters = 
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()けげこごさざしじすずせぜそぞただ";
-    const fontSize = 18;
-    const columnWidth = 20;
-    
-    // Calculate columns based on screen width
-    const columns = Math.floor(window.innerWidth / columnWidth);
-    let drops = Array(columns).fill(0);
-    
+    const canvas = document.getElementById("matrix")
+    const ctx = canvas.getContext("2d")
+
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()けげこごさざしじすずせぜそぞただ"
+    const columns = Math.floor(canvas.width / 20)
+    const drops = Array(columns).fill(0)
+
     function draw() {
-      // Semi-transparent black for fade effect
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      // Set text properties
-      ctx.fillStyle = "#00FF00";
-      ctx.font = `${fontSize}px 'VT323', monospace`;
-      
-      // Draw characters
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)"
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      ctx.fillStyle = "#00FF00"
+      ctx.font = "18px 'VT323', monospace"
+
       for (let i = 0; i < drops.length; i++) {
-        const text = characters[Math.floor(Math.random() * characters.length)];
-        const x = i * columnWidth;
-        const y = drops[i] * columnWidth;
-        
-        ctx.fillText(text, x, y);
-        
-        // Reset drop when it reaches bottom
-        if (y > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
+        const text = characters[Math.floor(Math.random() * characters.length)]
+        ctx.fillText(text, i * 20, drops[i] * 20)
+
+        if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0
         }
-        drops[i]++;
+        drops[i]++
       }
     }
-    
-    // Start the interval-based animation
-    const matrixInterval = setInterval(draw, 50);
-    
-    // Set up the animation cleanup after 5 seconds
+
+    const matrixInterval = setInterval(draw, 50)
+
     setTimeout(() => {
-      canvas.classList.add("fade-out");
+      canvas.classList.add("fade-out")
       setTimeout(() => {
-        clearInterval(matrixInterval);
-        canvas.remove();
-        const portfolio = document.getElementById("portfolio");
-        if (portfolio) {
-          portfolio.style.display = "grid";
-        }
+        clearInterval(matrixInterval)
+        canvas.remove()
+        document.getElementById("portfolio").style.display = "grid";
         isMatrixAnimationActive = false;
-        window.removeEventListener('resize', resizeCanvas);
-      }, 800);
-    }, 5000);
-    
-    // Return cleanup function
-    return () => {
-      clearInterval(matrixInterval);
-      window.removeEventListener('resize', resizeCanvas);
-      isMatrixAnimationActive = false;
-    };
+      }, 800)
+    }, 5000)
   }
+
 
   function handleKeyPress() {
     if (!animationTriggered) {
@@ -267,8 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
    type() // Start the typing animation
-}
-)
+})
 
 // Dynamic Date & Time
 function updateDateTime() {
@@ -648,3 +600,4 @@ document.addEventListener("DOMContentLoaded", () => {
       logAction("Encoded Image downloaded")
   });
 });
+
