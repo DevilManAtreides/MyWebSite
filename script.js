@@ -149,9 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
- 
-     // Custom Matrix rain animation
-    function startMatrixRain() {
+  function startMatrixRain() {
     const canvas = document.getElementById("matrix");
     const ctx = canvas.getContext("2d");
     let isMatrixAnimationActive = true;
@@ -177,7 +175,71 @@ document.addEventListener("DOMContentLoaded", () => {
       canvas.style.height = `${viewportHeight}px`;
     }
     
-
+    // Initial resize
+    resizeCanvas();
+    
+    // Add resize listener
+    window.addEventListener('resize', resizeCanvas);
+    
+    const characters = 
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()けげこごさざしじすずせぜそぞただ";
+    const fontSize = 18;
+    const columnWidth = 20;
+    
+    // Calculate columns based on screen width
+    const columns = Math.floor(window.innerWidth / columnWidth);
+    let drops = Array(columns).fill(0);
+    
+    function draw() {
+      // Semi-transparent black for fade effect
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Set text properties
+      ctx.fillStyle = "#00FF00";
+      ctx.font = `${fontSize}px 'VT323', monospace`;
+      
+      // Draw characters
+      for (let i = 0; i < drops.length; i++) {
+        const text = characters[Math.floor(Math.random() * characters.length)];
+        const x = i * columnWidth;
+        const y = drops[i] * columnWidth;
+        
+        ctx.fillText(text, x, y);
+        
+        // Reset drop when it reaches bottom
+        if (y > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    
+    // Start the interval-based animation
+    const matrixInterval = setInterval(draw, 50);
+    
+    // Set up the animation cleanup after 5 seconds
+    setTimeout(() => {
+      canvas.classList.add("fade-out");
+      setTimeout(() => {
+        clearInterval(matrixInterval);
+        canvas.remove();
+        const portfolio = document.getElementById("portfolio");
+        if (portfolio) {
+          portfolio.style.display = "grid";
+        }
+        isMatrixAnimationActive = false;
+        window.removeEventListener('resize', resizeCanvas);
+      }, 800);
+    }, 5000);
+    
+    // Return cleanup function
+    return () => {
+      clearInterval(matrixInterval);
+      window.removeEventListener('resize', resizeCanvas);
+      isMatrixAnimationActive = false;
+    };
+  }
 
   function handleKeyPress() {
     if (!animationTriggered) {
@@ -585,4 +647,3 @@ document.addEventListener("DOMContentLoaded", () => {
       logAction("Encoded Image downloaded")
   });
 });
-
