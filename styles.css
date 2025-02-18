@@ -69,7 +69,7 @@ body {
 #matrix {
   position: fixed;
   top: 0;
-  left: 0;
+  left: -5px;
   margin: 0;
   padding: 0;
   z-index: -1;
@@ -507,6 +507,18 @@ button:hover {
 }
 
 @media (max-width: 480px){
+
+  #matrix {
+  position: fixed;
+  top: 0;
+  left: -10px;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
+  transition: opacity 0.8s ease-out;
+  width: 100vw; /* Use viewport width */
+  height: 100vh;
+}
 
   .navbar {
     position: fixed;
