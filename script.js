@@ -149,38 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Custom Matrix rain animation
+ 
      // Custom Matrix rain animation
-  const styles = `
-  #matrix {
-    position: fixed;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 0;
-    z-index: -1;
-    transition: opacity 0.8s ease-out;
-    width: 100vw; /* Use viewport width */
-    height: 100vh;
-  }
-  
-  #matrix.fade-out {
-    opacity: 0;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-  `;
-  
-  // Create and append style element
-  const styleSheet = document.createElement("style");
-  styleSheet.textContent = styles;
-  document.head.appendChild(styleSheet);
-  
-  function startMatrixRain() {
+    function startMatrixRain() {
     const canvas = document.getElementById("matrix");
     const ctx = canvas.getContext("2d");
     let isMatrixAnimationActive = true;
