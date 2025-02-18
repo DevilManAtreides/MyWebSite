@@ -508,7 +508,14 @@ button:hover {
     display: flex;
     justify-content: space-around;
   }
-
+  .nav-item {
+    flex: 10;
+    align-content: center;   
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding:15px;
+    border: 1px solid var(--primary-color);
+}
   .content-section {
     left: var(--spacing);
     bottom: 80px;
@@ -534,17 +541,40 @@ button:hover {
     max-width: 280px; /* Prevent it from getting too wide */
   }
   
-  /* Adjust button layout for mobile */
-  #downloadBtn {
-    margin: 10px 0 0 0; /* Reset margin and stack vertically */
-    width: 100%;
-    max-width: 280px;
-  }
+  #encodeBtn {
+  width: 80px;
+  padding: 10px;
+  padding-top:10px ;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  background: #000000;
+  color: #00ff00;
+  font-family: 'VT323', monospace;
+}
+
+#downloadBtn{
+  width: 80px;
+  padding: 4px;
+  margin-left: 100px;
+  margin-top: -45px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  background: #000000;
+  color: #00ff00;
+  font-family: 'VT323', monospace;}
   
-  #encodeBtn, #decodeBtn {
-    width: 100%;
-    max-width: 280px;
-  }
+#decodeBtn{
+    width: 80px;
+
+  padding: 10px;
+
+  padding-top:10px ;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  background: #000000;
+  color: #00ff00;
+  font-family: 'VT323', monospace;
+}
   
   /* Adjust log container for mobile */
   #logContainer {
