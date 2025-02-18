@@ -66,6 +66,18 @@ body {
 }
 
 /* Matrix Rain Animation */
+#matrix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
+  transition: opacity 0.8s ease-out;
+  width: 100vw; /* Use viewport width */
+  height: 100vh;
+}
+
 #matrix.fade-out {
   opacity: 0;
   transition: opacity 1s ease-in-out;
